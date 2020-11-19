@@ -1,0 +1,23 @@
+<h3> Tabela de Produtos </h3>
+<label>Preço (maior que): </label>
+<input type="number" [(ngModel)]="preco"> <br/> 
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>NOME</th>
+        <th>MARCA</th>
+        <th>PREÇO</th>
+        <th>VALIDADE</th>
+        <th>EDIT</th>
+    </tr>
+    <tr *ngFor='let produto of produtos | filtroPreco:preco'>
+        <td>{{produto.id}}</td>
+        <td>{{produto.nome}}</td>
+        <td>{{produto.marca | uppercase}}</td>
+        <td>{{produto.preco | moeda}}</td> 
+        <td>{{produto.validade | date:'dd/MM/yyyy'}}</td>
+        <td><a [routerLink]="['/produtos/edit/',produto.id]">Editar </a></td>
+        <td><a [routerLink]="" (click)="deletar(produto.id)">Deletar </a></td>
+    </tr>        
+</table>
